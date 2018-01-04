@@ -1,0 +1,29 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false
+    }],
+    "stage-2"
+  ],
+  {{#alacarte}}
+  "plugins": [
+    "transform-runtime",
+    ["transform-imports", {
+      "vuetify": {
+        "transform": "vuetify/es5/components/${member}",
+        "preventFullImport": true
+      }
+    }]
+  ],
+  {{else}}
+  "plugins": ["transform-runtime"],
+  {{/alacarte}}
+  "env": {
+    "test": {
+	  "presets": ["env", "stage-2"]
+	  {{#if_eq runner "karma"}},
+      "plugins": ["istanbul"]
+      {{/if_eq}}
+    }
+  }
+}

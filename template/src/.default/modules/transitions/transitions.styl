@@ -1,0 +1,12 @@
+
+$animations = json("./transitions.json", {hash: true})
+$trans-duration = 0.3s
+
+for $trans in $animations
+  $cur = $animations[$trans]
+
+  .{$cur["in"]}-enter-active
+    animation: $cur["in"] $trans-duration ease-out
+
+  .{$cur["in"]}-leave-active
+    animation: $cur["out"] $trans-duration ease-in

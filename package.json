@@ -1,0 +1,14 @@
+{
+	"name": "cordova-webpack-boilerplate",
+	"version": "1.0.0",
+	"author": {
+		"name": "Rubixcode",
+		"url": "https://rubixcode.com",
+		"email": "contact@rubixcode.com"
+	},
+	"license": "MIT",
+	"description": "A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction that can be built into Cordova app.",
+	"devDependencies": {
+		"vue-cli": "^2.8.1"
+	}
+}

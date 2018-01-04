@@ -1,0 +1,23 @@
+.DS_Store
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+{{#unit}}
+/test/unit/coverage/
+{{/unit}}
+{{#e2e}}
+test/e2e/reports
+{{/e2e}}
+selenium-debug.log
+
+*.keystore
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
