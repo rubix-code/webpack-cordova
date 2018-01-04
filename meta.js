@@ -24,7 +24,11 @@ module.exports = {
       "type": "string",
       "message": "Author"
     },
-    "lint": {
+	"router": {
+		"type": "confirm",
+		"message": "Install vue-router?"
+	},
+	"lint": {
       "type": "confirm",
       "message": "Use ESLint to lint your code?"
     },
