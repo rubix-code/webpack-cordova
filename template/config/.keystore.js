@@ -5,6 +5,8 @@ const path = require('path')
 const deasync = require('deasync')
 const nodecmd = require('node-run-cmd')
 
+console.clear()
+console.log(chalk.yellow('Generate Keystore'))
 var keystore = async (callback = () => { }) => {
 	try {
 		var valid = false
@@ -169,6 +171,13 @@ var keystore = async (callback = () => { }) => {
 		}
 
 		fs.writeFileSync(path.resolve(__dirname, '../build.json'), JSON.stringify(build, false, 2))
+		if(fs.existsSync(path.resolve(__dirname, '../cordova'))){
+			fs.writeFileSync(path.resolve(__dirname, '../cordova/build.json'), JSON.stringify(build, false, 2))
+			fs.copySync(
+				path.resolve(__dirname,'../'+keystore.file),
+				path.resolve(__dirname,'../cordova/'+keystore.file),
+			)
+		}
 		console.log(chalk.green('Keystore is now ready'))
 		console.log(`[ ${keystore.file} ]`)
 		callback(false, true)

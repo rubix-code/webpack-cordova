@@ -12,7 +12,8 @@ const config = require('../config')
 var webpackConfig = require('./webpack.app.conf')
 const cmd = require('node-run-cmd')
 const mv = require('mv')
-const fs = require('fs')
+const fs = require('fs-extra')
+const keystore = require('../build.json')
 
 const spinner = ora('building ' + chalk.inverse.blue(config.build.appName + '.apk') + ' for production...\n' + chalk.cyan('building distribution...'))
 spinner.start()
@@ -20,33 +21,46 @@ spinner.start()
 config.build.assetsRoot = path.resolve(__dirname, '../www')
 webpackConfig.output.path = path.resolve(__dirname, '../www')
 
-var output_dir = path.resolve(__dirname, '../dist/')
+var outputDir = path.resolve(__dirname, '../dist/')
 
 const cordova = {
 	build: () => {
-		cmd.run([`cordova build --release --keystore='app.keystore' ${process.env.OS || 'android'}`], {
-			onData: data => console.log(data),
-			onDone: e => {
-				var sourceDir = path.resolve(__dirname, '../platforms/android/build/outputs/apk/')
-				var source = null
-				var appName = config.build.appName
-				if (fs.existsSync(path.resolve(sourceDir, './android-release.apk')))
-					source = path.resolve(sourceDir, './android-release.apk')
-				else if (fs.existsSync(path.resolve(sourceDir, './android-release-unsigned.apk'))) {
-					source = path.resolve(sourceDir, './android-release-unsigned.apk')
-					appName = appName + '-unsigned'
-				}
-				else {
-					console.log(chalk.yellow('Something went wrong!\n Please manually use the app \n ' + sourceDir))
-					process.exit()
-				}
-
-				var dest = output_dir + '/' + appName + '.apk'
-				mv(source, dest, { mkdirp: true }, e => {
-					console.log(dest)
-					if (e) console.log(chalk.red(e))
-					else console.log(chalk.inverse.green('DONE!') + chalk.green(` built ${config.build.appName}.apk \n Located at: ${output_dir} `))
+		var output = []
+		var consoleOutput = ''
+		cmd.run([`cordova build --release --keystore='${keystore.android.release.keystore}' ${process.env.OS || 'android'} --buildConfig`], {
+			cwd: 'cordova',
+			onData: data => {
+				consoleOutput += data
+				data.split('\n').map(i => {
+					output.push(
+						i.replace(/^\t+|\t+$|^\s+|\s+$/, '')
+							.replace('\\', '/')
+					)
 				})
+			},
+			onDone: e => {
+				if (e) {
+					console.log(chalk.yellow('Something went wrong!\n Please manually use the app from output directory \n '))
+					console.log(chalk.red(consoleOutput))
+					process.exit(e)
+				}
+				console.log(chalk.grey(consoleOutput))
+
+				console.log(chalk.green('Built the following apk(s):'))
+				output.filter(i => i.match(/(\.apk)$/))
+					.map(i => {
+						var destination = i.split('/')
+						destination = destination[destination.length - 1].split('-')
+						destination[0] = config.build.appName
+						destination = destination.join('-')
+
+						if (fs.existsSync(i)) {
+							fs.copySync(i, outputDir + '/' + destination)
+							console.log(chalk.green('> ') + destination)
+						}
+					})
+				console.log('Located at: \n' + outputDir + '/')
+				process.exit()
 			}
 		})
 	}

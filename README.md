@@ -65,6 +65,12 @@ You can specify port by adding environment variable PORT.
     - Selenium and chromedriver dependencies automatically handled.
     - Automatically spawns the Selenium server.
 
+## TODOS:
+
+1. Optimise Build Process
+2. Add Support for Other Cordova platforms
+1. Documentation
+
 ### Why this can suck
 
 Because it is my first attempt with th Node Environment many codes are just pulled together to make things work.

@@ -7,11 +7,16 @@ const _App = require('./app.env')
 const cmd2 = require('node-run-cmd')
 const deasync = require('deasync')
 
+// Source code base directory
 const sourceDir = path.resolve(__dirname, '../src/')
+// Application List File
 const AppFile = _App.file
 const OsFile = _App.osFile
+// Default App Location
 const defaultApp = _App.defaultApp
 
+console.clear()
+// Get all registered apps
 var AppList = fs.readJSONSync(AppFile)
 
 var manager = {
