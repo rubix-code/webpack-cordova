@@ -24,7 +24,17 @@ $ npm install -g vue-cli
 $ vue init rubixcode/webpack-cordova my-project
 $ cd my-project
 $ npm install
+
+# add cordova platform
+$ cd cordova
+# only android build is suported by script
+$ cordova platform add android
+$ cd ..
+
 $ npm run dev
+
+# build App
+$ npm run build:app
 ```
 
 The development server will run on port 3001 by default.
