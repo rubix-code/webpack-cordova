@@ -149,13 +149,13 @@ var keystore = async (callback = () => { }) => {
 		params = params.join('\n')
 		params = `echo "${params}"`
 		
-		var runthis = `${params} | keytool -genkey -v  -alias ${keystore.alias} -keystore ${keystore.file}  -keyalg RSA -keysize 2048 -validity 10000 `
-		fs.writeFileSync(path.resolve(__dirname,"../temp.sh"),runthis)
+		var runthis = `keytool -genkey -v -keyalg RSA -keysize 2048 -validity 10000  -alias ${keystore.alias} -keystore ${keystore.file} -dname "CN=${keystore.CN}, OU=${keystore.OU}, O=${keystore.O}, L=${keystore.L}, ST=${keystore.ST}, OU=${keystore.C}" -keypass ${keystore.keyPassword} -storepass ${keystore.keystorePassword}`
 		console.log('  Generating ...')
-		await nodecmd.run("./temp.sh",{
-			onDone: data => { if(data) throw 'Something Went wrong with keytool \n Error Code : '+data }
+		var _output = ''
+		await nodecmd.run(runthis,{
+			onData: data => { _output += data },
+			onDone: data => { if(data) throw 'Something Went wrong with keytool \n Error Code : '+ data + '\n' + chalk.grey(_output) }
 		})
-		fs.removeSync(path.resolve(__dirname, '../temp.sh'))
 
 		var answers = {}
 		answers["storePassword"] = keystore.keystorePassword

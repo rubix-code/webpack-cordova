@@ -4,6 +4,8 @@
 > Build Multiple Apps in one project that correlate each other
 
 ## Important
+> Does not Support Windows
+
 The following tools must be globally available in console before installation
 1. cordova (v7 or higher)
 2. keytool
@@ -77,9 +79,11 @@ You can specify port by adding environment variable PORT.
 
 ## TODOS:
 
-1. Optimise Build Process
-2. Add Support for Other Cordova platforms
-1. Documentation
+1. Add Windows Support
+2. Add Support for other cordova platforms
+3. Run all cordova command using onlt `npm run cordova [...args]`
+4. Optimize build and waiting time
+5. Add more Documentation
 
 ### Why this can suck
 
