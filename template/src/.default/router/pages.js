@@ -2,9 +2,9 @@ const files = require.context('@/pages/', false, /\.vue$/){{#if_eq lintConfig "a
 const pages = []{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
 files.keys().forEach(key => {
-	if(files(key).route && files(key).route.name && files(key).route.path ){
+	if(files(key).default.route && files(key).default.route.name && files(key).default.route.path ){
 		pages.push({
-			...files(key).route,
+			...files(key).default.route,
 			component:files(key){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 		}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 	}
