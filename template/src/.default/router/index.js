@@ -11,7 +11,9 @@ pages.push({
 	component: E404{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 
+// mode 'history' will not work because cordova serves only static files
+// file:/// api in browsers does not support history.push
+// use hash for route resolution
 export default new Router({
-	mode: 'history',
 	routes: pages{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}

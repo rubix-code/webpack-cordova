@@ -1,6 +1,6 @@
 {
-  "name": "tdg-app",
-  "short_name": "TDG",
+  "name": "{{ name }}",
+  "short_name": "{{ name }}",
   "icons": [
     {
       "src": "img/icons/android-chrome-192x192.png",
