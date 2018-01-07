@@ -5,12 +5,6 @@
   "description": "{{ description }}",
   "author": "{{ author }}",
   "private": true,
-  "engines": {
-	  "npm": "^5.5.1",
-	  "node": "^8.7.0",
-	  "cordova": "^8.0.0",
-	  "keytool": "*"
-  },
   "scripts": {
     {{#if_eq runner "jest"}}
     "unit": "jest test/unit/specs --coverage",
@@ -34,7 +28,8 @@
 	"manager": "node config/app-manager.js",
 	"emulate": "npm run build:app && cd cordova && cordova emulate ",
 	"cordova": "node config/.cordova.js",
-	"dev": "node build/dev-server.js"
+	"dev": "node build/dev-server.js",
+	"preinstall": "node .preinstall.js"
   },
   "dependencies": {
 	"babel-polyfill": "^6.26.0",
@@ -175,8 +170,8 @@
   },
   {{/if_eq}}
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+	  "node": ">= 8.0.0",
+	  "npm": ">= 5.5.0"
   },
   "browserslist": [
     "> 1%",
