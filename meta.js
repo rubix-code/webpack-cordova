@@ -26,9 +26,17 @@ module.exports = {
 			"message": "Project description",
 			"default": "A Vue.js project"
 		},
-		"author": {
+		"authorName": {
 			"type": "string",
 			"message": "Author"
+		},
+		"authorEmail": {
+			"type": "string",
+			"message": "Author Email"
+		},
+		"authorUrl": {
+			"type": "string",
+			"message": "Author Url"
 		},
 		"router": {
 			"type": "confirm",
