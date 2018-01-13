@@ -23,7 +23,7 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init rubixcode/webpack-cordova my-project
+$ vue init rubix-code/webpack-cordova my-project
 $ cd my-project
 $ npm install
 
