@@ -30,7 +30,8 @@
 	"build:dist": "node build/build.js",
 	"build:app": "node build/build.app.js",
 	"manager": "node config/app-manager.js",
-	"emulate": "npm run build:app && cd cordova && cordova emulate ",
+	"emulate": "npm run build:app -- --no-dist && cd cordova && cordova emulate ",
+	"device": "npm run build:app -- --no-dist && cd cordova && cordova run --device ",
 	"cordova": "node config/.cordova.js",
 	"dev": "node build/dev-server.js",
 	"preinstall": "node .preinstall.js"

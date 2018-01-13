@@ -38,10 +38,16 @@ cordova platform add android
 # emulate on android
 npm run emulate android
 
+# emulate on device
+npm run device android
+
 # build distributable application
 # output defaults to none
 # if output OS is not specified then the distribution is only copied to the cordova src file
 npm run build:app
+
+# build output to www directory but do not build dstribution
+npm run build:app -- --no-dist
 
 # build clean
 npm run build:app -- --clean
