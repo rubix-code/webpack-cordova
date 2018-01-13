@@ -6,7 +6,7 @@ files.keys().forEach(key => {
 		pages.push({
 			...files(key).default.route,
 			props: true,
-			component:files(key){{#if_eq lintConfig "airbnb"}},{{/if_eq}}
+			component:files(key).default{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
 		}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
 	}
 }){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
