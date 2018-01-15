@@ -32,7 +32,7 @@ const cordova = {
     var _config = fs.readFileSync(_configFile, 'utf8')
     _config = new XML(_config)
     _config.attribute('id').setValue(
-      _config.attribute('id').getValue() +
+      _package.appId +
       "." + config.build.appRoot
     )
     _config.child('name').setValue(config.build.appName)
