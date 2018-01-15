@@ -88,6 +88,12 @@ if (process.env.App) {
 	appName = current.appName
 }
 
+var splashScreen = path.resolve(__dirname, '../src/' + appRoot + '/splashScreen/index.html')
+if (fs.existsSync(splashScreen))
+	splashScreen = fs.readFileSync(splashScreen)
+else
+	splashScreen = false
+
 console.log('Configured for ' + appName)
 
 var argv = args(process.argv.slice(process.argv[2] === '--' ? 3 : 2))
@@ -108,6 +114,7 @@ module.exports = {
 		assetsPublicPath: './',
 		appRoot: appRoot,
 		appName: appName,
+		splashcreen: splashScreen,
 		productionSourceMap: true,
 		// Gzip off by default as many popular static hosts such as
 		// Surge or Netlify already gzip all static assets for you.

@@ -69,6 +69,7 @@ const env = {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
 		},
 		// necessary to consistently work with multiple chunks via CommonsChunkPlugin
 		chunksSortMode: 'dependency',
+		splashScreen: config.build.splashcreen,
 		serviceWorkerLoader: `<script>${loadMinified(path.join(__dirname,
 			'./service-worker-prod.js'))}</script>`
     }),
