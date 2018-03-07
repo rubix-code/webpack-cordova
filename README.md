@@ -26,7 +26,7 @@ $ npm install -g vue-cli
 $ vue init rubix-code/webpack-cordova my-project
 $ cd my-project
 $ npm install
-
+$ npm run onetime
 # add cordova platform
 $ cd cordova
 # only android build is suported by script

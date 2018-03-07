@@ -8,6 +8,7 @@
   {{#alacarte}}
   "plugins": [
     "transform-runtime",
+	"transform-flow-strip-types",
     ["transform-imports", {
       "vuetify": {
         "transform": "vuetify/es5/components/${member}",
@@ -16,7 +17,7 @@
     }]
   ],
   {{else}}
-  "plugins": ["transform-runtime"],
+  "plugins": ["transform-runtime", "transform-flow-strip-types"],
   {{/alacarte}}
   "env": {
     "test": {

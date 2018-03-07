@@ -124,5 +124,5 @@ module.exports = {
 		"test/e2e/**/*": "e2e",
 		"src/router/**/*": "router"
 	},
-	"completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  cd cordova\n  cordova add platform android\n cd ..\n  npm run dev \n  npm run build:app\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+	"completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run onetime \n  cd cordova\n  cordova add platform android\n cd ..\n  npm run dev \n  npm run build:app\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
 };

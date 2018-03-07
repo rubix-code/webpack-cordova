@@ -25,7 +25,7 @@
     {{#lint}}
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
 	{{/lint}}
-	"postinstall": "npm run cordova -- --init && node config/.keystore.js && npm run manager -- --add",
+	"onetime": "flow init && npm run cordova -- --init && node config/.keystore.js && npm run manager -- --add",
 	"start": "node build/dev-server.js",
 	"build:dist": "node build/build.js",
 	"build:app": "node build/build.app.js",
@@ -41,9 +41,11 @@
     "deasync": "^0.1.12",
     "v-offline": "^1.0.4",
     "vue": "^2.3.3",
-    "vue-router": "^2.3.1",
+	"vue-router": "^2.3.1",
+	"vue-head": "^2.0.12",
+	"vue-cordova": "^0.1.2",
     "vue-waterfall": "^1.0.6",
-    "vuetify": "^0.17.1"
+    "vuetify": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -144,7 +146,9 @@
     "inquirer": "^4.0.2",
     "minimist": "^1.2.0",
     "node-run-cmd": "^1.0.1",
-    "rimraf": "^2.6.0",
+	"rimraf": "^2.6.0",
+	"babel-plugin-transform-flow-strip-types": "^6.22.0",
+	"flow-bin": "^0.66.0",
 	"node-jsxml": "^0.9.0",
 	"semver": "^5.3.0"
   },
